@@ -12,7 +12,7 @@ namespace Assets._Nukusi.Scripts.Entities.Living
         [SerializeField] private UnitConfig unitConfig;
 
         [Inject] private BasicParticle.Pool basicParticlePool;
-        [Inject] private Healthbar.Factory healthbarFactory;
+        [Inject] private HealthbarFactory healthbarFactory;
         [Inject] private UIManager uiManager;
 
         private Healthbar currentHealthbar;
@@ -37,9 +37,7 @@ namespace Assets._Nukusi.Scripts.Entities.Living
 
             CurrentHealth = MaxHealth;
 
-            currentHealthbar = healthbarFactory.Create();
-            currentHealthbar.RectTransform.SetParent(uiManager.RectTransform);
-            currentHealthbar.Position = position;
+            currentHealthbar = healthbarFactory.Create(position, uiManager.RectTransform);
         }
 
         public bool ReceiveDamage(float damage)
@@ -57,7 +55,8 @@ namespace Assets._Nukusi.Scripts.Entities.Living
             if (CurrentHealth <= 0f)
             {
                 Destroy(gameObject);
-                
+                Destroy(currentHealthbar.gameObject);
+
                 var explosion = basicParticlePool.Spawn();
                 explosion.transform.position = position;
 

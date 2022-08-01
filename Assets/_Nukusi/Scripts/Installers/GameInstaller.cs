@@ -15,13 +15,12 @@ namespace Assets._Nukusi.Scripts.Installers
     {
         [SerializeField] private GameObject particlePrefab;
         [SerializeField] private UIManager uiManager;
-        [SerializeField] private GameObject healthbarPrefab;
 
         public override void InstallBindings()
         {
             Container.BindFactory<ObstacleType, Vector3, IObstacle, ObstacleFactory>().FromFactory<ExtendedObstacleFactory>();
             Container.BindFactory<UnitType, Vector3, IUnit, UnitFactory>().FromFactory<ExtendedUnitFactory>();
-            Container.BindFactory<Healthbar, Healthbar.Factory>().FromComponentInNewPrefab(healthbarPrefab); ;
+            Container.BindFactory<Vector3, RectTransform, Healthbar, HealthbarFactory>().FromFactory<ExtendedHealthbarFactory>();
             Container.BindInterfacesAndSelfTo<GameManager>().AsSingle();
             Container.BindInstance(uiManager);
 

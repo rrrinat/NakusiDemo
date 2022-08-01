@@ -36,10 +36,5 @@ namespace Assets._Nukusi.Scripts.UI
         {
             slider.value = value;
         }
-
-        public class Factory : PlaceholderFactory<Healthbar>
-        {
-
-        }
     }
 }
