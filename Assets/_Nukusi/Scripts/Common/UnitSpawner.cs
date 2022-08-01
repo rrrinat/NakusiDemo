@@ -9,10 +9,15 @@ namespace Assets._Nukusi.Scripts.Common
     {
         [Inject] private UnitFactory unitFactory;
         [Inject] private Borders borders;
+        [Inject] private UnitSpawnerConfig spawnerConfig;
+
+        private float lastSpawnTime;
+        private int unitCount;
 
         public void Initialize()
         {
-
+            lastSpawnTime = Time.timeSinceLevelLoad;
+            unitCount = 0;
         }
 
         public void Dispose()
@@ -26,9 +31,19 @@ namespace Assets._Nukusi.Scripts.Common
             {
                 SpawnUnit();
             }
+
+            var time = Time.timeSinceLevelLoad;
+            if (unitCount < spawnerConfig.MaxUnitNumber &&
+                time - lastSpawnTime > spawnerConfig.SpawnRate)
+            {
+                SpawnUnit();
+
+                lastSpawnTime = time;
+                unitCount++;
+            }
         }
 
-        private void SpawnUnit()
+        public void SpawnUnit()
         {
             var position = Vector3.up * 1f;
             var basicUnit = unitFactory.Create(UnitType.BasicUnit, position);

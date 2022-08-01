@@ -42,8 +42,6 @@ namespace Assets._Nukusi.Scripts.Entities.Inanimate
                 Attack(contactUnit);
             }
 
-            Debug.Log($"isContactUnit {collider.name} {isContactUnit}");
-
             Destroy(gameObject);
         }
 

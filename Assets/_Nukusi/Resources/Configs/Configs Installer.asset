@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Configs Installer
   m_EditorClassIdentifier: 
   physicsConfig: {fileID: 11400000, guid: 1c3952bf91247ee44917131efc683c59, type: 2}
+  unitSpawnerConfig: {fileID: 11400000, guid: b61c9f20e68b2ee4084eeffbf4e01356, type: 2}
+  obstacleSpawnerConfig: {fileID: 11400000, guid: 42da63e0c59454e4192d64eed7d494ed, type: 2}

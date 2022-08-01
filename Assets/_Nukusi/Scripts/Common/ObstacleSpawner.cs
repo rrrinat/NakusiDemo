@@ -1,7 +1,5 @@
 using Assets._Nukusi.Scripts.Entities.Inanimate;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -11,10 +9,15 @@ namespace Assets._Nukusi.Scripts.Common
     {
         [Inject] private ObstacleFactory obstacleFactory;
         [Inject] private Borders borders;
+        [Inject] private ObstacleSpawnerConfig spawnerConfig;
+
+        private float lastSpawnTime;
+        private int obstacleCount;
 
         public void Initialize()
         {
-
+            lastSpawnTime = Time.timeSinceLevelLoad;
+            obstacleCount = 0;
         }
 
         public void Dispose()
@@ -24,16 +27,25 @@ namespace Assets._Nukusi.Scripts.Common
 
         public void Tick()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            var time = Time.timeSinceLevelLoad;
+            if (obstacleCount < spawnerConfig.MaxObstacleNumber && 
+                time - lastSpawnTime > spawnerConfig.SpawnRate)
             {
-                SpawnObstacle();
+                var random = UnityEngine.Random.Range(0, 100);
+                var obstacleType = (random > 50) ? 
+                    ObstacleType.SoftObstacle : ObstacleType.HardObstacle;
+
+                SpawnObstacle(obstacleType);
+
+                lastSpawnTime = time;
+                obstacleCount++;
             }
         }
 
-        private void SpawnObstacle()
+        private void SpawnObstacle(ObstacleType obstacleType)
         {
             var position = RandomSpawnPoint();
-            var softObstacle = obstacleFactory.Create(ObstacleType.SoftObstacle, position);
+            var softObstacle = obstacleFactory.Create(obstacleType, position);
         }
 
         public Vector3 RandomSpawnPoint()

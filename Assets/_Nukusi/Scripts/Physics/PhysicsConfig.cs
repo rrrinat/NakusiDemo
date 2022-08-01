@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets._Nukusi.Scripts.Physics
 {
-    [CreateAssetMenu(menuName = "Nakusi/Common/Physics Config")]
+    [CreateAssetMenu(menuName = "Nakusi/Physics/Physics Config")]
     public class PhysicsConfig : ScriptableObject
     {
         [SerializeField] private ContactFilter2D obstacleFilter;
