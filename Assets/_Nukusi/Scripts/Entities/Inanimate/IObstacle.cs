@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets._Nukusi.Scripts.Entities.Inanimate
 {
-    public interface IObstacle : IGameObjectComponent
+    public interface IObstacle : ICanDamage, IGameObjectComponent
     {
         Collider2D Collider { get; }
         Rigidbody2D Rigidbody { get; }

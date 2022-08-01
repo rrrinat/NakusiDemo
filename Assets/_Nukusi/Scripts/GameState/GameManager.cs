@@ -32,7 +32,7 @@ namespace Assets._Nukusi.Scripts.GameState
 
         private void SpawnUnit()
         {
-            var position = Vector3.up;
+            var position = Vector3.up * 1f;
             var basicUnit = unitFactory.Create(UnitType.BasicUnit, position);
         }
 
