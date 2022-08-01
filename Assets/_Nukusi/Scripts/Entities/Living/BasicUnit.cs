@@ -21,8 +21,17 @@ namespace Assets._Nukusi.Scripts.Entities.Living
 
         public Vector3 position
         {
-            get { return this.transform.position; }
-            set { this.transform.position = value; }
+            get { return transform.position; }
+            set 
+            {
+                transform.position = value;
+                currentHealthbar.Position = value;
+            }
+        }
+
+        public float Height
+        {
+            get { return Collider.bounds.size.y; }
         }
 
         public float MaxHealth => unitConfig.MaxHealth;

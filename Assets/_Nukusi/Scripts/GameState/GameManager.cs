@@ -16,8 +16,8 @@ namespace Assets._Nukusi.Scripts.GameState
 
         public void Initialize()
         {
-            SpawnUnit();
-            SpawnObstacles();
+            //SpawnUnit();
+            //SpawnObstacles();
         }
 
         public void Dispose()

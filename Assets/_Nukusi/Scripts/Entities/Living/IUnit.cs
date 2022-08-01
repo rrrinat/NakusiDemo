@@ -6,6 +6,7 @@ namespace Assets._Nukusi.Scripts.Entities.Living
 {
     public interface IUnit : IHasHealth, IGameObjectComponent
     {
+        float Height { get; }
         Collider2D Collider { get; }
         Transform transform { get; }
 
